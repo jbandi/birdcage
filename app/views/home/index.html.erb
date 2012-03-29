@@ -1,0 +1,47 @@
+<% content_for :head do %>
+  <script src="/home/index.js" type="text/javascript"></script>
+<% end %>
+
+
+<h1>Birdcage - Let your tweets escape one at a time!!!</h1>
+<p id="notice"><%= notice %></p>
+
+<% if !current_user %>
+    <%= link_to "Sign in with Twitter", "auth/twitter" %>
+<% else %>
+    Welcome <%= current_user.name %>!
+    <%= link_to "Sign out!", signout_path %>
+    <%= link_to "Edit user data", edit_user_path(current_user) %>
+    <br/>
+    <br/>
+    <%= form_for(current_user, :url => "users/activate", :html=> {:id=>"form_user_activate"}) do |f| %>
+        Active: <%= f.check_box :active, :id=>"user_active" %>
+    <% end %>
+    <br/>
+    <%= form_for(@tweet) do |f| %>
+
+        <div id="create_tweet">
+          <%= f.label "New Tweet" %>
+          <span id="tweet_remaining_count">140</span>
+          <br/>
+          <%= f.text_area :content, :rows => 3 %>
+        </div>
+        <%= f.submit %>
+
+    <% end %>
+    <button id="shorten_url">Shorten URLs</button>
+
+    <br/>
+    <br/>
+    <h3>Your next tweets:</h3>
+
+    <% @tweets.each do |tweet| %>
+
+        <%= link_to "Up" , increase_priority_tweet_path(tweet), :method => :put %>
+        <%= link_to "Top" , set_top_priority_tweet_path(tweet), :method => :put %>
+        <%= link_to "Edit" , edit_tweet_path(tweet) %>
+        <%= tweet.content %>
+        <br/>
+    <% end %>
+
+<% end %>

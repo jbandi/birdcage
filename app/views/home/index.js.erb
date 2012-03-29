@@ -1,0 +1,54 @@
+// Place your application-specific JavaScript functions and classes here
+// This file is automatically included by javascript_include_tag :defaults
+
+function parseUrl(text) {
+        var bitly_url_regexp = /http:\/\/bit.ly\/[^\s]+/;
+        var url_match = text.match(/(http:\/\/|https:\/\/|www\.)[^\s]+/g);
+
+        for (var i in url_match) {
+            var url = url_match[i];
+            if (!url.match(bitly_url_regexp))
+                return url;
+        }
+        return null;
+}
+
+function replaceUrl(text, url, short_url) {
+    shortened_text = text.replace(url, short_url);
+    $("#tweet_content").val(shortened_text);
+    updateCount();
+}
+
+function shorten(text) {
+    var url = parseUrl(text);
+
+    if (url) {
+        $.ajax({
+            url: "http://api.bitly.com/v3/shorten?login=" + "<%= @bitly_login %>" + "&apiKey=" + "<%= @bitly_api_key %>" + "&longUrl=" + url,
+            dataType: "jsonp",
+            success: function(result) {
+                var short_url = result["data"]["url"];
+                replaceUrl(text, url, short_url)
+            }
+        })
+    }
+}
+
+function updateCount() {
+    $("#tweet_remaining_count").text(140 - $("#tweet_content").val().length);
+}
+
+
+$(document).ready(function() {
+    $("#tweet_content").keyup(function() {
+        updateCount();
+    });
+    $("#shorten_url").click(function() {
+        shorten($("#tweet_content").val());
+    });
+    $("#form_user_activate").ajaxForm();
+    $("#user_active").click(function(){
+        $("#form_user_activate").trigger("submit");
+    })
+
+});

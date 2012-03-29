@@ -1,0 +1,3 @@
+export TWITTER_CONSUMER_KEY=mykey
+export TWITTER_CONSUMER_SECRET=mysecret
+rails s
