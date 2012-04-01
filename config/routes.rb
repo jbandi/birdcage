@@ -14,6 +14,7 @@ Birdcage::Application.routes.draw do
     end
   end
 
+  match "users/activate" => "users#activate", :via => :put
   resources :users
   # The priority is based upon order of creation:
   # first created -> highest priority.
