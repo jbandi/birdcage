@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
 */
+
+#tweet_remaining_count {
+    float:right;
+}
+
+#create_tweet {
+    width: 300px;
+}

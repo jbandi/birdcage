@@ -24,14 +24,12 @@
           <%= f.label "New Tweet" %>
           <span id="tweet_remaining_count">140</span>
           <br/>
-          <%= f.text_area :content, :rows => 3 %>
+          <%= f.text_area :content, :rows => 7 %>
         </div>
         <%= f.submit %>
-
+        <input type="button" id="shorten_url" value="Shorten URLs"/>
     <% end %>
-    <button id="shorten_url">Shorten URLs</button>
-
-    <br/>
+    
     <br/>
     <h3>Your next tweets:</h3>
 
