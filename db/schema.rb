@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110911212847) do
+ActiveRecord::Schema.define(:version => 20120407093734) do
 
   create_table "tweets", :force => true do |t|
     t.text     "content"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20110911212847) do
     t.string   "bitly_password"
     t.integer  "post_interval",  :default => 60
     t.datetime "last_post"
+    t.string   "time_zone",      :default => "UTC"
   end
 
 end

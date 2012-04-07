@@ -20,7 +20,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(:bitly_login => params[:user][:bitly_login], 
                                   :bitly_password => params[:user][:bitly_password],
-                                  :post_interval => params[:user][:post_interval])
+                                  :post_interval => params[:user][:post_interval],
+                                  :time_zone => params[:user][:time_zone])
         format.html { redirect_to(root_url, :notice => 'User was successfully updated.') }
       else
         format.html { render :action => "edit" }

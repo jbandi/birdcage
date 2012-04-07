@@ -10,4 +10,17 @@ class User < ActiveRecord::Base
       user.secret = auth["credentials"]["secret"]
     end
   end
+
+  def last_post_timestamp
+    last_post.to_s(:short)
+  end
+
+  def next_post
+    if last_post + post_interval.minutes - Time.now > 0
+     last_post + post_interval.minutes
+   else
+      Time.now
+    end
+  end
+
 end

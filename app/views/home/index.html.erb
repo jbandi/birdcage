@@ -16,6 +16,8 @@
     <br/>
     <%= form_for(current_user, :url => "users/activate", :html=> {:id=>"form_user_activate"}) do |f| %>
         Active: <%= f.check_box :active, :id=>"user_active" %>
+        Last post: <%= current_user.last_post_timestamp %>
+        - Next post in <%= time_ago_in_words current_user.next_post %>
     <% end %>
     <br/>
     <%= form_for(@tweet) do |f| %>

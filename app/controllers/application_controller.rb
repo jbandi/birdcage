@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authenticate
+  before_filter :authenticate, :set_user_time_zone
   helper_method :current_user
   
   private
@@ -18,5 +18,9 @@ class ApplicationController < ActionController::Base
           redirect_to root_path, :notice => msg
 
         end
+      end
+
+      def set_user_time_zone
+        Time.zone = current_user.time_zone if current_user
       end
 end
