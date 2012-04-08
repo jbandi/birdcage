@@ -6,7 +6,7 @@ require_relative '../config/environment'
 include Clockwork
 
 
-every(1.minute, 'Tweet Sender') {
+every(10.minute, 'Tweet Sender') {
   
   log "Starting scheduling round..."
   
