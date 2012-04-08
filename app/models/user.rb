@@ -12,13 +12,17 @@ class User < ActiveRecord::Base
   end
 
   def last_post_timestamp
-    last_post.to_s(:short)
+    if last_post 
+      last_post.to_s(:short) 
+    else
+      ""
+    end
   end
 
   def next_post
-    if last_post + post_interval.minutes - Time.now > 0
+    if last_post && last_post + post_interval.minutes - Time.now > 0
      last_post + post_interval.minutes
-   else
+    else
       Time.now
     end
   end

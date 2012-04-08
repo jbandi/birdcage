@@ -1,8 +1,12 @@
 require 'rubygems'
+require 'clockwork'
 require_relative '../config/boot'
 require_relative '../config/environment'
 
-every(10.minute, 'Tweet Sender') {
+include Clockwork
+
+
+every(1.minute, 'Tweet Sender') {
   
   log "Starting scheduling round..."
   

@@ -31,6 +31,8 @@ GEM
     addressable (2.2.7)
     arel (3.0.2)
     builder (3.0.0)
+    clockwork (0.4.0)
+      tzinfo
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -126,6 +128,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  clockwork
   coffee-rails (~> 3.2.1)
   jquery-rails
   omniauth-twitter
