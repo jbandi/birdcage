@@ -36,14 +36,13 @@
     
     <br/>
     <h3>Your next tweets:</h3>
-
+    
     <% @tweets.each do |tweet| %>
-
         <%= link_to "Up" , increase_priority_tweet_path(tweet), :method => :put %>
         <%= link_to "Top" , set_top_priority_tweet_path(tweet), :method => :put %>
         <%= link_to "Edit" , edit_tweet_path(tweet) %>
         <%= tweet.content %>
         <br/>
     <% end %>
-
+    <%= link_to "Randomize" , randomize_tweets_path, :method => :put %>
 <% end %>

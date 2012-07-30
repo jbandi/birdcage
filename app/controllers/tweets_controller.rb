@@ -102,4 +102,15 @@ class TweetsController < ApplicationController
 
     redirect_to(:back, :notice => 'Tweet was put to top!')
   end
+
+  def randomize
+    puts "randomize"
+
+    for t in current_user.unsent_tweets do
+      t.priority = rand
+      t.save!
+    end
+
+    redirect_to(:back, :notice => 'Tweets randomized!')
+  end
 end

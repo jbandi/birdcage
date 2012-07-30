@@ -12,6 +12,9 @@ Birdcage::Application.routes.draw do
       put :increase_priority, :as => :increase_priority
       put :set_top_priority, :as => :set_top_priority
     end
+    collection do
+      put :randomize, :as => :randomize
+    end
   end
 
   match "users/activate" => "users#activate", :via => :put
