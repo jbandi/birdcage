@@ -4,10 +4,11 @@ class HomeController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @tweet = Tweet.new
-#        @tweets = current_user.tweets.where("sent = ?", false).order("priority desc, created_at asc") unless !current_user
-        @tweets = current_user.unsent_tweets unless !current_user
-        @latest_tweet_content = current_user.latest_tweet_content
+        if (current_user)
+          @tweet = Tweet.new
+          @tweets = current_user.unsent_tweets unless !current_user
+          @latest_tweet_content = current_user.latest_tweet_content unless !current_user
+        end
       end
       format.js do
         @bitly_login = current_user.bitly_login
